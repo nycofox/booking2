@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Traits;
+
+use App\Models\Role;
+
+trait HasRoles
+{
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::firstOrCreate(['name' => $role]);
+            $this->roles()->sync($role, false);
+        }
+    }
+
+    public function hasRole($role)
+    {
+        return $this->roles->contains('name', $role);
+    }
+
+    public function removeRole($role)
+    {
+        $this->roles()->detach($role);
+    }
+
+}
