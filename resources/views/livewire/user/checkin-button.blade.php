@@ -1,7 +1,7 @@
 <div>
-    @if(auth()->user()->isCheckedIn())
-        <button wire:click="toggleCheckin" class="btn btn-danger">Check Out</button>
+    @if($user->isCheckedIn())
+        <button wire:click="toggleCheckin" class="btn btn-danger">Sjekk ut</button>
     @else
-        <button wire:click="toggleCheckin" class="btn btn-primary">Check In</button>
+        <button wire:click="toggleCheckin" class="btn btn-primary">Sjekk inn</button>
     @endif
 </div>

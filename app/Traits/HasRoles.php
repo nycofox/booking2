@@ -27,7 +27,11 @@ trait HasRoles
 
     public function removeRole($role)
     {
-        $this->roles()->detach($role);
+        $role = Role::whereName($role)->first();
+
+        if ($role) {
+            $this->roles()->detach($role->id);
+        }
     }
 
 }

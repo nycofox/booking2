@@ -1,5 +1,13 @@
 <x-app>
-    Dashboard!
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                @livewire('student.upcoming-reservations')
+            </div>
+            <div class="col-md">
+                <x-card>Statistikk...</x-card>
+            </div>
+        </div>
+    </div>
 
-    @livewire('student.upcoming-reservations')
 </x-app>

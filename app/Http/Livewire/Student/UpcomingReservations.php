@@ -9,12 +9,8 @@ class UpcomingReservations extends Component
     public function render()
     {
         return view('livewire.student.upcoming-reservations', [
-            'bookings' => $this->bookings(),
+            'bookings' => auth()->user()->upcomingBookings(),
         ]);
     }
 
-    private function bookings()
-    {
-        return auth()->user()->bookings()->where('booked_from', '>', now())->get();
-    }
 }

@@ -15,12 +15,13 @@
                 </li>
                 @if (Auth::user()->hasRole('admin'))
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Administrasjon</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('admin.dashboard') }}">
+                            Administrasjon</a>
                     </li>
                 @endif
             </ul>
             <div class="d-flex">
-                @livewire('user.checkin-button')
+                @livewire('user.checkin-button', ['user' => auth()->user()])
                 <ul class="navbar-nav me-auto mb-1 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

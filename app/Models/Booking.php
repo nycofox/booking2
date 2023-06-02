@@ -11,6 +11,17 @@ class Booking extends Model
 
     protected $guarded = [];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'booked_from' => 'datetime',
+        'booked_to' => 'datetime',
+        'approved_at' => 'datetime',
+    ];
+
     public function seat()
     {
         return $this->belongsTo('App\Models\Seat');
@@ -20,4 +31,5 @@ class Booking extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
 }

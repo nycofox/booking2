@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\CanBook;
 use App\Traits\CanCheckin;
+use App\Traits\HasCandidates;
 use App\Traits\HasRoles;
 use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use LogsActivity, HasRoles, CanCheckin;
+    use LogsActivity, HasRoles, CanCheckin, CanBook, HasCandidates;
 
     protected $guarded = [];
 
@@ -36,19 +37,22 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_active_at' => 'datetime',
     ];
+
+    public function getFirstNameAttribute()
+    {
+        return explode(' ', $this->name)[0];
+    }
 
     public function anonymize()
     {
         $this->update([
-            'name' => 'Anonymized User',
+            'name' => 'Anonymisert bruker',
             'email' => null,
+            'avatar_url' => null,
+            'anonymized_at' => now(),
         ]);
-    }
-
-    public function bookings()
-    {
-        return $this->hasMany(Booking::class);
     }
 
 }

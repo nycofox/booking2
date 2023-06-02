@@ -45,6 +45,6 @@ class GoogleController extends Controller
             'type' => 'login'
         ]);
 
-        return redirect(route('home'));
+        return redirect($redirectAddress);
     }
 }

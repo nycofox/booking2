@@ -31,3 +31,9 @@ Route::get('/auth/google', [App\Http\Controllers\Auth\GoogleController::class, '
     ->name('google.login');
 Route::get('/callback/google', [App\Http\Controllers\Auth\GoogleController::class, 'googleCallback'])
     ->name('google.callback');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users');
+    Route::get('/user/{user}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('admin.profile');
+});

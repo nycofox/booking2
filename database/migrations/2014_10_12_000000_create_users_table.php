@@ -18,9 +18,9 @@ return new class extends Migration {
             $table->string('social_id')->nullable();
             $table->text('avatar_url')->nullable();
             $table->rememberToken();
-            $table->softDeletes();
             $table->timestamp('last_active_at')->nullable();
             $table->timestamp('anonymized_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

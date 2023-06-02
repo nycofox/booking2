@@ -6,6 +6,9 @@ use Livewire\Component;
 
 class CheckinButton extends Component
 {
+
+    public $user;
+
     public function render()
     {
         return view('livewire.user.checkin-button');
@@ -13,6 +16,6 @@ class CheckinButton extends Component
 
     public function toggleCheckin()
     {
-        auth()->user()->toggleCheckin();
+        $this->user->toggleCheckin();
     }
 }
