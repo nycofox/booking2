@@ -5,6 +5,7 @@
                 @livewire('student.upcoming-reservations')
             </div>
             <div class="col-md">
+                @livewire('student.news')
                 <x-card>Statistikk...</x-card>
             </div>
         </div>

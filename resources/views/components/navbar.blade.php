@@ -30,11 +30,11 @@
                                  width="40" height="40">
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Profil</a></li>
-                            <li><a class="dropdown-item" href="#">Innstillinger</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+{{--                            <li><a class="dropdown-item" href="#">Profil</a></li>--}}
+{{--                            <li><a class="dropdown-item" href="#">Innstillinger</a></li>--}}
+{{--                            <li>--}}
+{{--                                <hr class="dropdown-divider">--}}
+{{--                            </li>--}}
                             <li><a class="dropdown-item" href="#">Logg ut</a></li>
                         </ul>
                     </li>
