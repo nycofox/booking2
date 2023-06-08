@@ -26,7 +26,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
-                            <img src="{{ auth()->user()->avatar_url }}" alt="Profile picture" class="rounded-circle"
+                            <img src="{{ auth()->user()->profile_picture }}" alt="Profile picture" class="rounded-circle"
                                  width="40" height="40">
                         </a>
                         <ul class="dropdown-menu">

@@ -38,11 +38,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_active_at' => 'datetime',
+        'anonymized_at' => 'datetime'
     ];
 
     public function getFirstNameAttribute()
     {
         return explode(' ', $this->name)[0];
+    }
+
+    public function getProfilePictureAttribute()
+    {
+        return $this->avatar_url ?? url('img/unknown_user.jpg');
     }
 
     public function anonymize()
