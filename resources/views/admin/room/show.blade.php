@@ -18,16 +18,16 @@
                     <td>{{ $seat->name }}</td>
                     <td>
                         @if($seat->active)
-                            <span class="badge badge-success">Ja</span>
+                            <span class="badge text-bg-success">Ja</span>
                         @else
-                            <span class="badge badge-danger">Nei</span>
+                            <span class="badge text-bg-danger">Nei</span>
                         @endif
                     </td>
                     <td>
                         @if($seat->requires_approval)
-                            <span class="badge badge-success">Ja</span>
+                            <span class="badge text-bg-danger">Ja</span>
                         @else
-                            <span class="badge badge-danger">Nei</span>
+                            <span class="badge text-bg-success">Nei</span>
                         @endif
                     </td>
                     <td><a href="{{ route('seats.edit', [$room, $seat]) }}">Rediger</a></td>

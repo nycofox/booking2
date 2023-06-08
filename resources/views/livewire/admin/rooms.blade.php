@@ -10,7 +10,7 @@
         <tbody>
         @forelse($rooms as $room)
             <tr>
-                <td>{{ $room->name }}</td>
+                <td><a href="{{ route('rooms.show', $room) }}">{{ $room->name }}</a></td>
                 <td>{{ $room->seats_count }}</td>
                 <td><a href="{{ route('rooms.edit', $room) }}">Rediger</a></td>
             </tr>
