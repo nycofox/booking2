@@ -4,4 +4,6 @@ Planned:
   - Daily reminder of reserved seat
   - Reminder if seat is booked but user hasn't checked in (with copy to admins who has the user as their own)
   - Weekly summary to admins of own users
-  -
+  - Mail to admin about pending booking approval
+  - Mail to student about approved booking
+  - Mail to student about rejected booking

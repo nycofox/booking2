@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Seat extends Model
 {
@@ -19,20 +20,12 @@ class Seat extends Model
 
     public function room()
     {
-        return $this->belongsTo('App\Models\Room');
+        return $this->belongsTo(Room::class);
     }
 
     public function bookings()
     {
-        return $this->hasMany('App\Models\Booking');
-    }
-
-    public function scopeAvailable($query)
-    {
-        return $query->whereDoesntHave('bookings', function ($query) {
-            $query->where('bookings.starts_at', '<=', now())
-                ->where('bookings.ends_at', '>=', now());
-        });
+        return $this->hasMany(Booking::class);
     }
 
     public function book($user, $startsAt, $endsAt)
@@ -42,5 +35,20 @@ class Seat extends Model
             'booked_from' => $startsAt,
             'booked_to' => $endsAt,
         ]);
+    }
+
+    public function scopeAvailable(Builder $query)
+    {
+        return $query->whereDoesntHave('bookings', function ($query) {
+            $query->where('bookings.starts_at', '<=', now())
+                ->where('bookings.ends_at', '>=', now());
+        });
+    }
+
+    public function scopeBookingsDate(Builder$query, $date)
+    {
+        return $query->with(['bookings' => function ($query) use ($date) {
+            $query->whereDate('bookings.booked_from', $date);
+        }]);
     }
 }

@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware('auth')->name('home');
-
 Route::get('login', function () {
     return view('auth.login');
 })->middleware('guest')->name('login');
@@ -31,6 +29,11 @@ Route::get('/auth/google', [App\Http\Controllers\Auth\GoogleController::class, '
     ->name('google.login');
 Route::get('/callback/google', [App\Http\Controllers\Auth\GoogleController::class, 'googleCallback'])
     ->name('google.callback');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('home');
+    Route::get('/room/{room}/{date?}', [\App\Http\Controllers\RoomController::class, 'show'])->name('booking.room.show');
+});
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
