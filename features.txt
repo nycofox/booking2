@@ -1,0 +1,7 @@
+Planned:
+
+* Mails:
+  - Daily reminder of reserved seat
+  - Reminder if seat is booked but user hasn't checked in (with copy to admins who has the user as their own)
+  - Weekly summary to admins of own users
+  -

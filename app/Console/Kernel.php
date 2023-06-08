@@ -12,7 +12,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // Force checkout all users who have not checked out yet
+        $schedule->command('app:force-checkout')->dailyAt('16:00');
+
+        // Anonymize users who have not been active lately
+        $schedule->command('app:anonymize-users')->daily();
     }
 
     /**
