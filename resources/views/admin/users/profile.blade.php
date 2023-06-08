@@ -26,7 +26,7 @@
         </div>
         <div class="col-md-8">
             <x-card title="Kommende reservasjoner"></x-card>
-            <x-card title="Statistikk"></x-card>
+            @livewire('student.statistics')
         </div>
     </div>
 </x-admin>
