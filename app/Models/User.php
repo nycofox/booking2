@@ -51,6 +51,7 @@ class User extends Authenticatable
             'name' => 'Anonymisert bruker',
             'email' => null,
             'avatar_url' => null,
+            'remember_token' => null,
             'anonymized_at' => now(),
         ]);
     }
