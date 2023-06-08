@@ -2,8 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md">
-                <x-card>Kandidater sjekket inn nå:</x-card>
-
+                @livewire('admin.checked-in-users')
                 @livewire('admin.search-users')
             </div>
 
@@ -16,8 +15,8 @@
                         @endforeach
                     </ul>
                 </x-card>
+                @livewire('admin.rooms')
 
-                <x-card>Statistikk:</x-card>
             </div>
         </div>
     </div>

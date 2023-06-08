@@ -9,16 +9,9 @@ use Illuminate\Http\Request;
 
 class SeatController extends Controller
 {
-    public function index(Room $room)
-    {
-        return view('admin.seat.index', [
-            'room' => $room,
-        ]);
-    }
-
     public function create(Room $room)
     {
-        return view('admin.seat.create', [
+        return view('admin.room.seat.create', [
             'room' => $room,
             'seat' => new Seat(),
         ]);
@@ -33,12 +26,12 @@ class SeatController extends Controller
             'requires_approval' => 'boolean',
         ]));
 
-        return redirect()->route('admin.rooms.seats.index', $room);
+        return redirect()->route('rooms.show', $room);
     }
 
     public function edit(Room $room, Seat $seat)
     {
-        return view('admin.seat.edit', [
+        return view('admin.room.seat.edit', [
             'room' => $room,
             'seat' => $seat,
         ]);
@@ -53,7 +46,7 @@ class SeatController extends Controller
             'requires_approval' => 'boolean',
         ]));
 
-        return redirect()->route('admin.rooms.seats.index', $room);
+        return redirect()->route('rooms.show', $room);
     }
 
     public function destroy(Room $room, Seat $seat)

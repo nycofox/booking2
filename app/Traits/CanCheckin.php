@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\Checkin;
+use Illuminate\Database\Eloquent\Builder;
 
 trait CanCheckin
 {
@@ -47,6 +48,13 @@ trait CanCheckin
         } else {
             $this->checkin();
         }
+    }
+
+    public function scopeCheckedIn(Builder $query)
+    {
+        return $query->whereHas('checkins', function ($query) {
+            $query->whereNull('checkout_at');
+        });
     }
 
 }

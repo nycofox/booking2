@@ -12,6 +12,11 @@ class Seat extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'active' => 'boolean',
+        'requires_approval' => 'boolean',
+    ];
+
     public function room()
     {
         return $this->belongsTo('App\Models\Room');

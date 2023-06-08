@@ -36,4 +36,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users');
     Route::get('/user/{user}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('admin.profile');
+    Route::resource('/rooms', \App\Http\Controllers\Admin\RoomController::class);
+    Route::resource('/rooms/{room}/seats', \App\Http\Controllers\Admin\SeatController::class)->except('index');
 });
