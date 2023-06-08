@@ -9,4 +9,7 @@
     @empty
         <p>Ingen nyheter.</p>
     @endforelse
+    @if(auth()->user()->hasRole('admin'))
+        <p><a href="#" class="small">Legg til ny</a></p>
+    @endif
 </x-card>

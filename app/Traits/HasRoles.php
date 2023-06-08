@@ -34,4 +34,9 @@ trait HasRoles
         }
     }
 
+    public function removeRoles()
+    {
+        $this->roles()->detach();
+    }
+
 }
