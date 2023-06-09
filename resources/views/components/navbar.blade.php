@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-warning shadow-lg mb-4">
     <div class="container">
         <a class="navbar-brand mb-0 h1" href="{{ route('home') }}">
-            <img src="{{ url('android-chrome-192x192.png') }}" alt="Logo" class="img-fluid me-2" style="max-height: 50px;">
+            <img src="{{ url('android-chrome-192x192.png') }}" alt="Logo" class="img-fluid me-2"
+                 style="max-height: 50px;">
             {{ config('app.name') }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -9,27 +10,22 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-1 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Dashbord</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Reserver en plass</a>
-                </li>
-                @if (Auth::user()->hasRole('admin'))
+            @if (Auth::user()->hasRole('admin'))
+                <ul class="navbar-nav me-auto mb-1 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('admin.dashboard') }}">
                             Administrasjon</a>
                     </li>
-                @endif
-            </ul>
+                </ul>
+            @endif
             <div class="d-flex">
                 @livewire('user.checkin-button', ['user' => auth()->user()])
                 <ul class="navbar-nav me-auto mb-1 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
-                            <img src="{{ auth()->user()->profile_picture }}" alt="Profile picture" class="rounded-circle"
+                            <img src="{{ auth()->user()->profile_picture }}" alt="Profile picture"
+                                 class="rounded-circle"
                                  width="40" height="40">
                         </a>
                         <ul class="dropdown-menu">
@@ -38,7 +34,7 @@
                             {{--                            <li>--}}
                             {{--                                <hr class="dropdown-divider">--}}
                             {{--                            </li>--}}
-                            <li><a class="dropdown-item" href={{ route('logout') }}" onclick="event.preventDefault();
+                            <li><a class="dropdown-item" href={{ route('logout') }}" onclick=" event.preventDefault();
                                    document.getElementById('logout-form').submit();">Logg ut</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
