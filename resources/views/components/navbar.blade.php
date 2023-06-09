@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg bg-warning shadow-lg mb-4">
     <div class="container">
-        <a class="navbar-brand mb-0 h1" href="{{ route('home') }}">{{ config('app.name') }}</a>
+        <a class="navbar-brand mb-0 h1" href="{{ route('home') }}">
+            <img src="{{ url('android-chrome-192x192.png') }}" alt="Logo" class="img-fluid me-2" style="max-height: 50px;">
+            {{ config('app.name') }}
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

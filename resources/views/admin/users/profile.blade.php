@@ -25,7 +25,7 @@
             </x-card>
         </div>
         <div class="col-md-8">
-            <x-card title="Kommende reservasjoner"></x-card>
+            @livewire('student.upcoming-reservations', ['user' => $user])
             @livewire('student.statistics')
         </div>
     </div>

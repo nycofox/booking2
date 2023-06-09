@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function show(Room $room, $date=null)
+    public function show(Room $room, $date = null)
     {
-        if(!$date) {
+        if (!$date) {
             return redirect()->route('booking.room.show', [$room, date('Y-m-d')]);
         }
 
@@ -17,7 +17,21 @@ class RoomController extends Controller
             'room' => $room,
             'seats' => $room->seats()->orderBy('name')->bookingsDate($date)->get(),
             'date' => $date,
+            'dates' => $this->getDates(),
         ]);
+    }
+
+    private function getDates()
+    {
+        for ($i = 0; $i < 7; $i++) {
+            $currentDate = now()->addDays($i);
+            if ($currentDate->isWeekend()) {
+                continue;
+            }
+            $dates[] = $currentDate->format('Y-m-d');
+        }
+
+        return $dates;
     }
 
 }

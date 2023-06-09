@@ -6,9 +6,8 @@
             </div>
             <div class="col-md">
                 @livewire('student.news')
-                <x-card>Statistikk...</x-card>
+                @livewire('room.list-rooms-widget')
             </div>
         </div>
     </div>
-
 </x-app>

@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 class Seat extends Model
 {
     use HasFactory;
-    use \App\Traits\Favoritable;
 
     protected $guarded = [];
 

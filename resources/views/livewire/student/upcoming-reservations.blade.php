@@ -1,6 +1,6 @@
 <x-card title="Kommende reservasjoner">
-    <p>Du har {{ $bookings->count() }} kommende reservasjon(er):</p>
     @if($bookings->count() > 0)
+        <p>{{ $name }} har {{ $bookings->count() }} kommende reservasjon(er):</p>
         <table class="table">
             <thead>
             <tr>
@@ -28,7 +28,7 @@
                         {{ $booking->booked_to->format('H:i') }}
                     </td>
                     <td>
-                        Avbestill
+                        @livewire('student.delete-reservation', ['booking' => $booking])
                     </td>
                 </tr>
             @endforeach
@@ -40,5 +40,7 @@
             <li>Grønn: Godkjent</li>
             <li>Gul: Venter på godkjenning</li>
         </ul>
+    @else
+        <p>{{ $name }} har ingen kommende reservasjoner.</p>
     @endif
 </x-card>

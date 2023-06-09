@@ -14,7 +14,8 @@ trait CanBook
 
     public function upcomingBookings()
     {
-        return $this->bookings()->where('booked_from', '>', now()->startOfDay())->with('seat')->get();
+        return $this->bookings()->where('booked_from', '>', now()->startOfDay())
+            ->orderBy('booked_from')->with('seat')->get();
     }
 
 }
