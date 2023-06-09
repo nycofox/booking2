@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\CanBook;
+use App\Traits\HasBookings;
 use App\Traits\CanCheckin;
 use App\Traits\FavoriteSeat;
 use App\Traits\HasCandidates;
@@ -16,7 +16,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use LogsActivity, HasRoles, CanCheckin, CanBook, HasCandidates, FavoriteSeat;
+    use LogsActivity, HasRoles, CanCheckin, HasBookings, HasCandidates, FavoriteSeat;
 
     protected $guarded = [];
 

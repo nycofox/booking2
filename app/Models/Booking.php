@@ -33,4 +33,17 @@ class Booking extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function approve()
+    {
+        $this->update([
+            'approved_at' => now(),
+            'approved_by' => auth()->id(),
+        ]);
+    }
+
+    public function reject()
+    {
+        $this->delete();
+    }
+
 }

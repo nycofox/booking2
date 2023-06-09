@@ -11,7 +11,7 @@ class RoomController extends Controller
     public function index()
     {
         return view('admin.room.index', [
-            'rooms' => Room::all(),
+            'rooms' => Room::orderBy('name')->get()
         ]);
     }
 
@@ -35,7 +35,7 @@ class RoomController extends Controller
     {
         return view('admin.room.show', [
             'room' => $room,
-            'seats' => $room->seats()->orderBy('name')->get(),
+            'seats' => $room->seats()->get()->sortBy('name', SORT_NATURAL),
         ]);
     }
 

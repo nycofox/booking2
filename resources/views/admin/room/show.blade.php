@@ -7,6 +7,7 @@
             <thead>
             <tr>
                 <th scope="col">Navn</th>
+                <th scope="col">Beskrivelse</th>
                 <th scope="col">Aktiv?</th>
                 <th scope="col">Må godkjennes?</th>
                 <th scope="col">&nbsp;</th>
@@ -16,6 +17,7 @@
             @foreach($seats as $seat)
                 <tr>
                     <td>{{ $seat->name }}</td>
+                    <td>{{ $seat->description }}</td>
                     <td>
                         @if($seat->active)
                             <span class="badge text-bg-success">Ja</span>

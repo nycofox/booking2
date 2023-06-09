@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use App\Models\Booking;
 
-trait CanBook
+trait HasBookings
 {
 
     public function bookings()

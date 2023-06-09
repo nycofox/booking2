@@ -27,12 +27,13 @@ class Seat extends Model
         return $this->hasMany(Booking::class);
     }
 
-    public function book($user, $startsAt, $endsAt)
+    public function book($user, $startsAt, $endsAt, $request = null)
     {
         $this->bookings()->create([
             'user_id' => $user->id,
             'booked_from' => $startsAt,
             'booked_to' => $endsAt,
+            'request' => $request,
         ]);
     }
 

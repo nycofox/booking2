@@ -1,5 +1,5 @@
 <x-app>
-    <x-card title="{{ $room->name }} ({{ $date }})">
+    <x-card title="{{ $room->name }} ({{ Carbon\Carbon::createFromFormat('Y-m-d', $date)->locale('no')->dayName }} {{ $date }})">
         <p>Plasser i dette kan reserveres mandag til fredag kl {{ $room->bookable_from }}
             til {{ $room->bookable_to }}. Du kan reservere en plass opptil en uke fremover i tid.</p>
         <p><a href="#">Her kan du se setekartet for rommet.</a></p>

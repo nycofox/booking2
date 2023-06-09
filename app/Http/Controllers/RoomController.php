@@ -15,7 +15,7 @@ class RoomController extends Controller
 
         return view('rooms.show', [
             'room' => $room,
-            'seats' => $room->seats()->orderBy('name')->bookingsDate($date)->get(),
+            'seats' => $room->seats()->bookingsDate($date)->get()->sortBy('name', SORT_NATURAL),
             'date' => $date,
             'dates' => $this->getDates(),
         ]);
