@@ -13,7 +13,7 @@ class AddFavoriteButton extends Component
 
     public function render()
     {
-        $this->is_favorite = auth()->user()->hasFavorite($this->seat->id);
+        $this->is_favorite = $this->seat->isFavorite;
 
         return view('livewire.seat.add-favorite-button');
     }

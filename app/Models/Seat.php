@@ -51,4 +51,9 @@ class Seat extends Model
             $query->whereDate('bookings.booked_from', $date);
         }]);
     }
+
+    public function getIsFavoriteAttribute()
+    {
+        return auth()->user()->favorites->contains($this->id);
+    }
 }

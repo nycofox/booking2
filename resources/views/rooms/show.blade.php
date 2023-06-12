@@ -29,7 +29,10 @@
                     <th>{{ $seat->name }}</th>
                     <td>
                         @forelse($seat->bookings as $booking)
-                            <span class="text-bg-danger py-1 px-2 rounded shadow-sm">
+                            <span class="text-bg-{{ $booking->status }} py-1 px-2 rounded shadow-sm">
+                                @if(auth()->user()->hasRole('admin'))
+                                    {{ $booking->user->name }}
+                                @endif
                                 {{ $booking->booked_from->format('H:i') }} - {{ $booking->booked_to->format('H:i') }}
                             </span>
                         @empty

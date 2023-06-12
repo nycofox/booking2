@@ -46,4 +46,17 @@ class Booking extends Model
         $this->delete();
     }
 
+    public function getStatusAttribute()
+    {
+        if($this->approved_at && $this->user_id == auth()->id()) {
+            return 'success';
+        }
+
+        if(!$this->approved_at && $this->user_id == auth()->id()) {
+            return 'warning';
+        }
+
+        return 'danger';
+    }
+
 }
