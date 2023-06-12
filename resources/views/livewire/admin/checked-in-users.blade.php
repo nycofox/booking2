@@ -1,7 +1,9 @@
 <x-card title="Innsjekkede kandidater">
     <ul>
-        @foreach($users as $user)
+        @forelse($users as $user)
             <li><a href="{{ route('admin.profile', $user) }}">{{ $user->name }}</a></li>
-        @endforeach
+        @empty
+            <li>Ingen innsjekkede kandidater</li>
+        @endforelse
     </ul>
 </x-card>

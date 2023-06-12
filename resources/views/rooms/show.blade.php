@@ -1,5 +1,6 @@
 <x-app>
-    <x-card title="{{ $room->name }} ({{ Carbon\Carbon::createFromFormat('Y-m-d', $date)->locale('no')->dayName }} {{ $date }})">
+    <x-card
+        title="{{ $room->name }} ({{ Carbon\Carbon::createFromFormat('Y-m-d', $date)->locale('no')->dayName }} {{ $date }})">
         <p>Plasser i dette kan reserveres mandag til fredag kl {{ $room->bookable_from }}
             til {{ $room->bookable_to }}. Du kan reservere en plass opptil en uke fremover i tid.</p>
         <p><a href="#">Her kan du se setekartet for rommet.</a></p>
@@ -27,11 +28,13 @@
                 <tr>
                     <th>{{ $seat->name }}</th>
                     <td>
-                        @foreach($seat->bookings as $booking)
-                            <span class="bg-warning px-2">
+                        @forelse($seat->bookings as $booking)
+                            <span class="text-bg-danger py-1 px-2 rounded shadow-sm">
                                 {{ $booking->booked_from->format('H:i') }} - {{ $booking->booked_to->format('H:i') }}
                             </span>
-                        @endforeach
+                        @empty
+                            <span>Ingen reservasjoner i dag.</span>
+                        @endforelse
                     </td>
                     <td>
                         @if($seat->requires_approval)
@@ -48,9 +51,17 @@
             @endforeach
             </tbody>
         </table>
-        <small>
-            Dersom en plass krever godkjenning, vil reservasjonen din bli sendt til en administrator for gjennomgang.
-            Du vil få en e-post når reservasjonen er godkjent.
-        </small>
+        <p>
+            <small>
+                Dersom en plass krever godkjenning, vil reservasjonen din bli sendt til en administrator for
+                gjennomgang.
+                Du vil få en e-post når reservasjonen er godkjent.
+            </small>
+        </p>
+        <p>
+            <span class="text-bg-success px-2 py-1 rounded shadow-sm">Godkjent reservasjon</span>
+            <span class="text-bg-warning px-2 py-1 rounded shadow-sm">Venter på godkjenning</span>
+            <span class="text-bg-danger px-2 py-1 rounded shadow-sm">Opptatt</span>
+        </p>
     </x-card>
 </x-app>

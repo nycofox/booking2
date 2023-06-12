@@ -3,20 +3,14 @@
         <div class="row">
             <div class="col-md">
                 @livewire('admin.checked-in-users')
+                @livewire('admin.approval-queue')
                 @livewire('admin.search-users')
             </div>
 
             <div class="col-md">
-                <x-card>
-                    <h5>Mine kandidater:</h5>
-                    <ul>
-                        @foreach($candidates as $candidate)
-                            <li><a href="{{ route('admin.profile', $candidate) }}">{{ $candidate->name }}</a></li>
-                        @endforeach
-                    </ul>
-                </x-card>
+                @livewire('admin.user.my-candidates')
                 @livewire('admin.rooms')
-
+                @livewire('admin.booking.create-manual-booking')
             </div>
         </div>
     </div>
