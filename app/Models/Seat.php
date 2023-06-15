@@ -37,12 +37,29 @@ class Seat extends Model
         ]);
     }
 
-    public function scopeAvailable(Builder $query, $from, $to)
+    public function isAvailable($from, $to)
     {
-        return $query->whereDoesntHave('bookings', function ($query, $from, $to) {
-            $query->where('booked_from', '<=', $to)
-                ->where('booked_to', '>=', $from);
+        return $this->bookings()->whereBetween('booked_from', [$from, $to])
+            ->orWhereBetween('booked_to', [$from, $to])
+            ->doesntExist();    
+    }
+
+    public function isReserved($from, $to)
+    {
+        return !$this->isAvailable($from, $to);
+    }
+
+    public function scopeReserved(Builder $query, $from, $to)
+    {
+        return $query->whereHas('bookings', function ($query) use ($from, $to) {
+            $query->whereBetween('booked_from', [$from, $to])
+                ->orWhereBetween('booked_to', [$from, $to]);
         });
+
+//        return $query->whereDoesntHave('bookings', function ($query, $from, $to) {
+//            $query->where('booked_from', '<=', $to)
+//                ->where('booked_to', '>=', $from);
+//        });
     }
 
     public function scopeBookingsDate(Builder $query, $date)

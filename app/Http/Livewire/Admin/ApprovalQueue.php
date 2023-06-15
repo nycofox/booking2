@@ -13,7 +13,8 @@ class ApprovalQueue extends Component
     public function render()
     {
         return view('livewire.admin.approval-queue', [
-            'approvals' => Booking::whereNull('approved_at')->orderBy('created_at')->with('seat')->with('user')->get(),
+            'approvals' => Booking::whereNull('approved_at')->where('booked_from', '>=', now()->startOfDay())
+                ->orderBy('created_at')->with('seat')->with('user')->get(),
         ]);
     }
 //

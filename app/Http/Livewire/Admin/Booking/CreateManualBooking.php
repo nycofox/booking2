@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin\Booking;
 use App\Models\Booking;
 use App\Models\Seat;
 use App\Models\User;
+use App\Rules\SeatAvailable;
+use Closure;
 use Livewire\Component;
 
 class CreateManualBooking extends Component
@@ -13,13 +15,6 @@ class CreateManualBooking extends Component
     public $seat_id;
     public $booked_from;
     public $booked_to;
-
-    protected $rules = [
-        'user_id' => 'required|exists:users,id',
-        'seat_id' => 'required|exists:seats,id',
-        'booked_from' => 'required|date',
-        'booked_to' => 'required|date|after:booked_from',
-    ];
 
     public function render()
     {
@@ -31,7 +26,12 @@ class CreateManualBooking extends Component
 
     public function submit()
     {
-        $this->validate();
+        $this->validate([
+            'user_id' => 'required|exists:users,id',
+            'seat_id' => ['required', 'exists:seats,id', new SeatAvailable($this->booked_from, $this->booked_to)],
+            'booked_from' => 'required|date',
+            'booked_to' => 'required|date|after:booked_from',
+        ]);
 
         $booking = Booking::create([
             'user_id' => $this->user_id,
