@@ -57,4 +57,20 @@ trait CanCheckin
         });
     }
 
+    public function minutesCheckedIn($from = null, $to = null): int
+    {
+        if(!$from) {
+            $from = now()->startOfWeek();
+        }
+
+        if(!$to) {
+            $to = now();
+        }
+
+        return (int) $this->checkins()
+            ->where('checkin_at', '>=', $from)
+            ->where('checkin_at', '<=', $to)
+            ->sum('duration');
+    }
+
 }

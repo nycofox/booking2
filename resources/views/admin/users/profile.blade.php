@@ -19,9 +19,11 @@
             </x-card>
             <x-card>
                 <h5>Administrasjon</h5>
-                @livewire('admin.user.give-admin-role', ['user' => $user])
-                @livewire('admin.user.toggle-candidate', ['user' => $user])
-                @livewire('user.checkin-button', ['user' => $user])
+                <div class="g-2">
+                    @livewire('admin.user.give-admin-role', ['user' => $user])
+                    @livewire('admin.user.toggle-candidate', ['user' => $user])
+                    @livewire('user.checkin-button', ['user' => $user])
+                </div>
             </x-card>
         </div>
         <div class="col-md-8">
