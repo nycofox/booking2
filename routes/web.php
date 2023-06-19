@@ -33,6 +33,7 @@ Route::get('/callback/google', [App\Http\Controllers\Auth\GoogleController::clas
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('home');
     Route::get('/room/{room}/{date?}', [\App\Http\Controllers\RoomController::class, 'show'])->name('booking.room.show');
+    Route::get('/book/{seat}/{date}', [\App\Http\Controllers\BookingController::class, 'create'])->name('booking.create');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {

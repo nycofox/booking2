@@ -47,7 +47,7 @@
                         @endif
                     </td>
                     <td>
-                        <a href="#" class="btn btn-primary py-0 px-2 mb-1">Reservér</a>
+                        <a href="{{ route('booking.create', [$seat, $date]) }}" class="btn btn-primary py-0 px-2 mb-1">Reservér</a>
                         @livewire('seat.add-favorite-button', ['seat' => $seat])
                     </td>
                 </tr>

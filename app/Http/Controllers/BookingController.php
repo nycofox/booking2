@@ -9,8 +9,11 @@ class BookingController extends Controller
 {
     public function create(Seat $seat, $date)
     {
+        $room = $seat->room;
+
         return view('booking.create', [
             'seat' => $seat,
+            'room' => $room,
             'date' => $date,
         ]);
     }
