@@ -27,24 +27,15 @@ class Seat extends Model
         return $this->hasMany(Booking::class);
     }
 
-//    public function book($user, $startsAt, $endsAt, $request = null)
-//    {
-//        $this->bookings()->create([
-//            'user_id' => $user->id,
-//            'booked_from' => $startsAt,
-//            'booked_to' => $endsAt,
-//            'request' => $request,
-//        ]);
-//    }
 
-    public function isAvailable($from, $to)
+    public function isAvailable($from, $to): bool
     {
         return $this->bookings()->whereBetween('booked_from', [$from, $to])
             ->orWhereBetween('booked_to', [$from, $to])
             ->doesntExist();
     }
 
-    public function isReserved($from, $to)
+    public function isReserved($from, $to): bool
     {
         return !$this->isAvailable($from, $to);
     }
@@ -56,10 +47,6 @@ class Seat extends Model
                 ->orWhereBetween('booked_to', [$from, $to]);
         });
 
-//        return $query->whereDoesntHave('bookings', function ($query, $from, $to) {
-//            $query->where('booked_from', '<=', $to)
-//                ->where('booked_to', '>=', $from);
-//        });
     }
 
     public function scopeBookingsDate(Builder $query, $date)
@@ -69,7 +56,7 @@ class Seat extends Model
         }]);
     }
 
-    public function getIsFavoriteAttribute()
+    public function getIsFavoriteAttribute(): bool
     {
         return auth()->user()->favorites->contains($this->id);
     }
