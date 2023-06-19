@@ -19,12 +19,7 @@ class SeatController extends Controller
 
     public function store(Request $request, Room $room)
     {
-        $room->seats()->create($request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'active' => 'boolean',
-            'requires_approval' => 'boolean',
-        ]));
+        $room->seats()->create($this->rules());
 
         return redirect()->route('rooms.show', $room);
     }
@@ -39,12 +34,7 @@ class SeatController extends Controller
 
     public function update(Request $request, Room $room, Seat $seat)
     {
-        $seat->update($request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'active' => 'boolean',
-            'requires_approval' => 'boolean',
-        ]));
+        $seat->update($this->rules());
 
         return redirect()->route('rooms.show', $room);
     }
@@ -54,5 +44,18 @@ class SeatController extends Controller
         $seat->delete();
 
         return redirect()->route('admin.rooms.seats.index', $room);
+    }
+
+    private function rules()
+    {
+        $attributes = request()->validate([
+            'name' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $attributes['active'] = request()->has('active');
+        $attributes['requires_approval'] = request()->has('requires_approval');
+
+        return $attributes;
     }
 }
