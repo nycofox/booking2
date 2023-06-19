@@ -13,7 +13,7 @@ class SeatController extends Controller
     {
         return view('admin.room.seat.create', [
             'room' => $room,
-            'seat' => new Seat(),
+            'seat' => new Seat(['active' => true]),
         ]);
     }
 
