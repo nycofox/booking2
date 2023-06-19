@@ -5,6 +5,7 @@
                 @livewire('admin.checked-in-users')
                 @livewire('admin.approval-queue')
                 @livewire('admin.search-users')
+                @livewire('admin.list-admins')
             </div>
 
             <div class="col-md">

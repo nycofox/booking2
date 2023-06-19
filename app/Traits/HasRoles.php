@@ -39,4 +39,11 @@ trait HasRoles
         $this->roles()->detach();
     }
 
+    public function scopeIsAdmin($query)
+    {
+        return $query->whereHas('roles', function ($query) {
+            $query->where('name', 'admin');
+        });
+    }
+
 }
