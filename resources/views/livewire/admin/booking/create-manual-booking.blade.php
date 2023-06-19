@@ -25,16 +25,20 @@
         </div>
         <div class="mb-2">
             <label for="booked_from">Fra</label>
-            <input type="datetime-local" class="form-control" wire:model="booked_from">
+            <input type="datetime-local" class="form-control" wire:model="booked_from" id="booked_from">
             @error('booked_from') <span class="text-danger">{{ $message }}</span> @enderror
         </div>
         <div class="mb-2">
             <label for="booked_to">Til</label>
-            <input type="datetime-local" class="form-control" wire:model="booked_to">
+            <input type="datetime-local" class="form-control" wire:model="booked_to" id="booked_to">
             @error('booked_to') <span class="text-danger">{{ $message }}</span> @enderror
         </div>
 
         <button type="submit" class="btn btn-primary mt-2">Opprett reservasjon</button>
     </form>
+
+    <script>
+
+    </script>
 </x-card>
 

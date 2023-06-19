@@ -17,11 +17,7 @@ class BookingController extends Controller
 
     public function store(Request $request, Seat $seat)
     {
-        $seat->book([
-            'user' => auth()->user(),
-            'starts_at' => $request->booked_from,
-            'ends_at' => $request->booked_to,
-        ]);
+        $booking = $seat->bookings()->create($this->validateRequest());
 
         return redirect()->route('seats.show', $seat);
 
@@ -37,4 +33,5 @@ class BookingController extends Controller
             'request' => 'nullable|string',
         ]);
     }
+
 }

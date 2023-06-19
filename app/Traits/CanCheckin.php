@@ -13,7 +13,7 @@ trait CanCheckin
         return $this->hasMany(Checkin::class);
     }
 
-    public function isCheckedIn()
+    public function isCheckedIn(): bool
     {
         return $this->checkins()->whereNull('checkout_at')->exists();
     }
