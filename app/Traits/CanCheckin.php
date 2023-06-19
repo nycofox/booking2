@@ -15,13 +15,17 @@ trait CanCheckin
 
     public function isCheckedIn(): bool
     {
-        return $this->checkins()->whereNull('checkout_at')->exists();
+        return $this->checked_in_at !== null;
     }
 
     public function checkin()
     {
         $this->checkins()->create([
             'checkin_at' => now(),
+        ]);
+
+        $this->update([
+            'checked_in_at' => now(),
         ]);
     }
 
@@ -33,6 +37,10 @@ trait CanCheckin
             'checkout_at' => now(),
             'forced_checkout' => $force,
             'duration' => now()->diffInMinutes($checkin->checkin_at),
+        ]);
+
+        $this->update([
+            'checked_in_at' => null,
         ]);
     }
 
@@ -52,9 +60,7 @@ trait CanCheckin
 
     public function scopeCheckedIn(Builder $query)
     {
-        return $query->whereHas('checkins', function ($query) {
-            $query->whereNull('checkout_at');
-        });
+        return $query->whereNotNull('checked_in_at');
     }
 
     public function minutesCheckedIn($from = null, $to = null): int

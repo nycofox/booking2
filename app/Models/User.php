@@ -39,7 +39,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_active_at' => 'datetime',
-        'anonymized_at' => 'datetime'
+        'anonymized_at' => 'datetime',
+        'checked_in_at' => 'datetime',
     ];
 
     public function getFirstNameAttribute()
