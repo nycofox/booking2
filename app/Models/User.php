@@ -64,4 +64,14 @@ class User extends Authenticatable
         ]);
     }
 
+    public function scopeWithoutAnonymized($query)
+    {
+        return $query->whereNull('anonymized_at');
+    }
+
+    public function scopeOnlyAnonymized($query)
+    {
+        return $query->whereNotNull('anonymized_at');
+    }
+
 }

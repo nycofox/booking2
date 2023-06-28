@@ -12,7 +12,7 @@ class SearchUsers extends Component
     public function render()
     {
         if(strlen($this->search) >= 2) {
-            $result = User::where('name', 'like', '%' . $this->search . '%')->get();
+            $result = User::where('name', 'like', '%' . $this->search . '%')->withoutAnonymized()->get();
         } else {
             $result = [];
         }
